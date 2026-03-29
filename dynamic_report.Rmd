@@ -1,0 +1,48 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+
+```
+
+## Targeted Advertising Analysis
+
+This report analyses patterns in targeted advertisements observed across different social media platforms. It explores the types of ads shown and how relevant they are to the user.
+
+```{r}
+library(tidyverse)
+suppressPackageStartupMessages(library(tidyverse))
+
+# Load data
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQR_G_3yEKNwFvx9spVkD_Axk0cMDp05GT7xUyU9-VkBifoj6qEFR6HfgEEMd82MD8YGo3hlIlaUExP/pub?gid=257118034&single=true&output=csv")
+
+# Rename variables
+latest_data <- logged_data %>%
+  rename(platform = "Which platform did you see this ad on?",
+    ad_type = "What type of product or content is being advertised?",
+    relevance = "How relevant is this ad to you? (1 = Not relevant, 10 = Very relevant)",
+    interaction = "Did you interact with the ad?")
+
+# Create summary values
+mean_relevance <- mean(latest_data$relevance)
+max_relevance <- max(latest_data$relevance)
+
+# Dynamic text
+paste("The average relevance score of ads is", round(mean_relevance, 2))
+paste("The highest relevance score observed was", max_relevance)
+
+# Bar charts
+ggplot(latest_data, aes(x = platform)) +
+  geom_bar() +
+  labs(title = "Number of Ads by Platform")
+ggplot(latest_data, aes(x = ad_type)) +
+  geom_bar() +
+  labs(title = "Ad Types Observed") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
