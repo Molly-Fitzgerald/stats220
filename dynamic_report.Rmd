@@ -17,7 +17,6 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
 This report analyses patterns in targeted advertisements observed across different social media platforms. It explores the types of ads shown and how relevant they are to the user.
 
 ```{r}
-library(tidyverse)
 suppressPackageStartupMessages(library(tidyverse))
 
 # Load data
