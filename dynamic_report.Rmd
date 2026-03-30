@@ -21,7 +21,7 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 
-logged_data <- read_csv("YOUR LINK")
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQR_G_3yEKNwFvx9spVkD_Axk0cMDp05GT7xUyU9-VkBifoj6qEFR6HfgEEMd82MD8YGo3hlIlaUExP/pub?gid=257118034&single=true&output=csv")
 
 latest_data <- logged_data %>%
   rename(platform = `Which platform did you see this ad on?`,
